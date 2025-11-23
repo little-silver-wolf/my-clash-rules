@@ -143,8 +143,8 @@ proxy-groups:
     type: select
     proxies:
       [
-        🚗 直连,
         🌍 国际信号,
+        🚗 直连
       ]
 
   #分隔,下面是地区分组
@@ -284,6 +284,7 @@ rule-providers:
     interval: 86400
 
 rules:
+  - DOMAIN-SUFFIX,playstove.com,🌍 国际信号
   - IP-CIDR,8.8.8.8/32,🌍 国际信号,no-resolve
   - IP-CIDR,8.8.4.4/32,🌍 国际信号,no-resolve
   - IP-CIDR,1.1.1.1/32,🌍 国际信号,no-resolve
