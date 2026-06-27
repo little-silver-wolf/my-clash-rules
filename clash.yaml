@@ -86,6 +86,7 @@ proxy-groups:
         🇸🇬 新加坡,
         🇺🇸 美国,
         ❓ 其它地区,
+        📶 自动选择,
         🚗 直连,
       ]
 
@@ -93,8 +94,6 @@ proxy-groups:
     type: select
     include-all: true
     exclude-type: direct
-    proxies:
-      - 📶 自动选择
 
   - name: 🔍 Google
     type: select
@@ -159,50 +158,46 @@ proxy-groups:
     tolerance: 10
 
   - name: 🇭🇰 香港
-    type: select
+    type: url-test
     include-all: true
     exclude-type: direct
     filter: "(?i)港|hk|hongkong|hong kong"
-    proxies:
-      - 📶 自动选择
+    tolerance: 10
 
   - name: 🏝️ 台湾
-    type: select
+    type: url-test
     include-all: true
     exclude-type: direct
     filter: "(?i)台|tw|taiwan"
-    proxies:
-      - 📶 自动选择
+    tolerance: 10
 
   - name: 🇯🇵 日本
-    type: select
+    type: url-test
     include-all: true
     exclude-type: direct
     filter: "(?i)^(?!.*(?:尼日利亚|nigeria)).*(?:日|jp|japan)"
-    proxies:
-      - 📶 自动选择
+    tolerance: 10
 
   - name: 🇺🇸 美国
-    type: select
+    type: url-test
     include-all: true
     exclude-type: direct
     filter: "(?i)美|us|unitedstates|united states"
-    proxies:
-      - 📶 自动选择
+    tolerance: 10
 
   - name: 🇸🇬 新加坡
-    type: select
+    type: url-test
     include-all: true
     exclude-type: direct
     filter: "(?i)(新|sg|singapore)"
-    proxies:
-      - 📶 自动选择
+    tolerance: 10
 
   - name: ❓ 其它地区
-    type: select
+    type: url-test
     include-all: true
     exclude-type: direct
     filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"
+    tolerance: 10
 
 rule-providers:
   reject:
