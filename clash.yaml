@@ -75,17 +75,11 @@ dns:
       - system
 
 proxy-groups:
-  - name: 🔩 全部节点
-    type: select
-    include-all: true
-    exclude-type: direct
-
-  - name: 🌍 国际信号
+  - name: 🎯 节点选择
     type: select
     proxies:
       [
-        🔩 全部节点,
-        ⬆️ 自动选择,
+        🌐 全部节点,
         🇭🇰 香港,
         🏝️ 台湾,
         🇯🇵 日本,
@@ -95,11 +89,18 @@ proxy-groups:
         🚗 直连,
       ]
 
+  - name: 🌐 全部节点
+    type: select
+    include-all: true
+    exclude-type: direct
+    proxies:
+      - 📶 自动选择
+
   - name: 🔍 Google
     type: select
     proxies:
       [
-        🌍 国际信号,
+        🎯 节点选择,
         🚗 直连,
       ]
 
@@ -107,7 +108,7 @@ proxy-groups:
     type: select
     proxies:
       [
-        🌍 国际信号,
+        🎯 节点选择,
         🚗 直连,
       ]
 
@@ -116,14 +117,14 @@ proxy-groups:
     proxies:
       [
         🚗 直连,
-        🌍 国际信号,
+        🎯 节点选择,
       ]
   - name: 🛜 iCloud
     type: select
     proxies:
       [
         🚗 直连,
-        🌍 国际信号,
+        🎯 节点选择,
       ]
 
   - name: 🚫 屏蔽访问
@@ -132,26 +133,26 @@ proxy-groups:
       [
         REJECT,
         🚗 直连,
-        🌍 国际信号,
+        🎯 节点选择,
       ]
   - name: 🇨🇳 国内
     type: select
     proxies:
       [
         🚗 直连,
-        🌍 国际信号,
+        🎯 节点选择,
       ]
   - name: 🎯 兜底路由
     type: select
     proxies:
       [
-        🌍 国际信号,
+        🎯 节点选择,
         🚗 直连
       ]
 
   #分隔,下面是地区分组
 
-  - name: ⬆️ 自动选择
+  - name: 📶 自动选择
     type: url-test
     include-all: true
     exclude-type: direct
@@ -162,30 +163,40 @@ proxy-groups:
     include-all: true
     exclude-type: direct
     filter: "(?i)港|hk|hongkong|hong kong"
+    proxies:
+      - 📶 自动选择
 
   - name: 🏝️ 台湾
     type: select
     include-all: true
     exclude-type: direct
     filter: "(?i)台|tw|taiwan"
+    proxies:
+      - 📶 自动选择
 
   - name: 🇯🇵 日本
     type: select
     include-all: true
     exclude-type: direct
-    filter: "(?i)日|jp|japan"
+    filter: "(?i)^(?!.*(?:尼日利亚|nigeria)).*(?:日|jp|japan)"
+    proxies:
+      - 📶 自动选择
 
   - name: 🇺🇸 美国
     type: select
     include-all: true
     exclude-type: direct
     filter: "(?i)美|us|unitedstates|united states"
+    proxies:
+      - 📶 自动选择
 
   - name: 🇸🇬 新加坡
     type: select
     include-all: true
     exclude-type: direct
     filter: "(?i)(新|sg|singapore)"
+    proxies:
+      - 📶 自动选择
 
   - name: ❓ 其它地区
     type: select
@@ -287,10 +298,10 @@ rule-providers:
 
 rules:
   - DOMAIN-SUFFIX,cycani.org,🚗 直连
-  - DOMAIN-SUFFIX,playstove.com,🌍 国际信号
-  - IP-CIDR,8.8.8.8/32,🌍 国际信号,no-resolve
-  - IP-CIDR,8.8.4.4/32,🌍 国际信号,no-resolve
-  - IP-CIDR,1.1.1.1/32,🌍 国际信号,no-resolve
+  - DOMAIN-SUFFIX,playstove.com,🎯 节点选择
+  - IP-CIDR,8.8.8.8/32,🎯 节点选择,no-resolve
+  - IP-CIDR,8.8.4.4/32,🎯 节点选择,no-resolve
+  - IP-CIDR,1.1.1.1/32,🎯 节点选择,no-resolve
   - RULE-SET,lancidr,DIRECT
   - RULE-SET,applications,DIRECT
   - RULE-SET,private,DIRECT
@@ -298,9 +309,9 @@ rules:
   - RULE-SET,apple,🍎 Apple
   - RULE-SET,google,🔍 Google
   - RULE-SET,telegramcidr,📲 Telegram
-  - RULE-SET,tld-not-cn,🌍 国际信号
-  - RULE-SET,gfw,🌍 国际信号
-  - RULE-SET,proxy,🌍 国际信号
+  - RULE-SET,tld-not-cn,🎯 节点选择
+  - RULE-SET,gfw,🎯 节点选择
+  - RULE-SET,proxy,🎯 节点选择
   - RULE-SET,direct,🇨🇳 国内
   - RULE-SET,cncidr,🇨🇳 国内
   - GEOIP,LAN,🇨🇳 国内
