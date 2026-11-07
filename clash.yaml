@@ -292,6 +292,9 @@ rule-providers:
     interval: 86400
 
 rules:
+  - DOMAIN-SUFFIX,google.com,🔍 Google
+  - DOMAIN-SUFFIX,googleapis.com,🔍 Google
+  - DOMAIN-SUFFIX,gstatic.com,🔍 Google
   - DOMAIN-SUFFIX,cycani.org,🚗 直连
   - DOMAIN-SUFFIX,playstove.com,🎯 节点选择
   - IP-CIDR,8.8.8.8/32,🎯 节点选择,no-resolve
